@@ -1,0 +1,12 @@
+:host >>> .alert {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  :host >>> .alert-dismissible .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.75rem 0.75rem;
+    color: inherit;
+}

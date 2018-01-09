@@ -1,0 +1,95 @@
+<div class="container p-4" [ngClass]="background">
+  <img *ngIf="logo" alt="PAR" class="py-3" [src]="logo" />
+  <h2 *ngIf="!logo">{{title}}
+    <small class="text-muted">{{subtitle}}</small>
+  </h2>
+
+  <!-- <form novalidate (ngSubmit)="submit ? submit(form.value) : onSubmit(form.value)" [formGroup]="form"> -->
+    <form novalidate (ngSubmit)="onSubmit(form.value)" [formGroup]="form">
+    <div [ngClass]="row">
+      <div *ngFor="let control of objectControls" class="" [ngClass]="(control.size) ? control.size : col">
+        <div *ngIf="control.type" class="form-group">
+
+          <label [attr.for]="control">{{control.label}}</label>
+          <div [ngSwitch]="control.type">
+            <input *ngSwitchCase="'text'" class="form-control" [formControlName]="control.key" [id]="control.key" [type]="control.type"
+              [placeholder]="control.placeholder" [readonly]="control.readOnly">
+            <input *ngSwitchCase="'number'" class="form-control" [formControlName]="control.key" [id]="control.key" [type]="control.type"
+              [placeholder]="control.placeholder" [readonly]="control.readOnly">
+            <input *ngSwitchCase="'date'" class="form-control" [formControlName]="control.key" [id]="control.key" [type]="control.type"
+              [placeholder]="control.placeholder" [readonly]="control.readOnly">
+            <div *ngSwitchCase="'password'" class="input-group">
+              <span class="input-group-addon" id="sizing-addon1">
+                <i class="fa fa-lock" aria-hidden="true"></i>
+              </span>
+              <input class="form-control" [formControlName]="control.key" [id]="control.key" [type]="control.type" [placeholder]="control.placeholder"
+                [readonly]="control.readOnly">
+            </div>
+            <div *ngSwitchCase="'username'" class="input-group">
+              <span class="input-group-addon" id="sizing-addon1">
+                <i class="fa fa-user" aria-hidden="true"></i>
+              </span>
+              <input class="form-control" [formControlName]="control.key" [id]="control.key" type="text" [placeholder]="control.placeholder"
+                [readonly]="control.readOnly">
+            </div>
+            <div *ngSwitchCase="'email'" class="input-group">
+              <span class="input-group-addon" id="sizing-addon1">
+                <i class="fa fa-envelope-o" aria-hidden="true"></i>
+              </span>
+              <input class="form-control" [formControlName]="control.key" [id]="control.key" [type]="control.type" [placeholder]="control.placeholder"
+                [readonly]="control.readOnly">
+            </div>
+            <div *ngSwitchCase="'radio'" class="form-check">
+              <label *ngFor="let option of control.options" class="form-check-label mr-2">
+                <input type="radio" class="form-check-input " [name]="control.key" [formControlName]="control.key" [value]="option.value"> {{ option.label }}
+              </label>
+            </div>
+            <div *ngSwitchCase="'select'">
+              <select [formControlName]="control.key" class="form-control">
+                <option *ngFor="let option of control.options" [value]="option.value">
+                  {{ option.label }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="error" *ngIf="form.get(control.key).invalid && (form.get(control.key).dirty || form.get(control.key).touched)">
+            <div *ngFor="let key of objectKeys(form.get(control.key).errors)">
+              <div *ngIf="'form.get(control.key).errors.'+ key">
+                {{getErrorMessage(key, control)}}
+              </div>
+            </div>
+            <div *ngIf="debug">
+              {{control.validation.customs | json}}
+            </div>
+          </div>
+          <div *ngIf="debug">
+            {{form.get(control.key).errors | json}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex flex-row-reverse mt-3">
+      <div *ngFor="let button of objectButtons" class="mr-2">
+        <div [ngSwitch]="button.type">
+          <button *ngSwitchCase="'cancel'" [disabled]="!form.valid" [type]="button.type" class="btn" [ngClass]="button.class">{{button.label}}</button>
+          <button *ngSwitchCase="'reset'" [disabled]="!form.valid" [type]="button.type" class="btn" [ngClass]="button.class">{{button.label}}</button>
+          <button *ngSwitchCase="'submit'" [disabled]="" [type]="button.type" class="btn" [ngClass]="button.class">{{button.label}}</button>
+          <button *ngSwitchCase="'button'" [disabled]="!form.valid" [type]="button.type" class="btn" [ngClass]="button.class" (click)="button.click ? button.click(form.value) : onSubmit(form.value)">{{button.label}}</button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div *ngIf="debug">
+    <hr />
+    <!-- This section is for evaluation in dev mode -->
+    <strong>Form Values</strong>
+    <pre>{{ form.value | json }}</pre>
+    <hr />
+    <strong>Form is valid:</strong> {{form.valid}}
+    <hr />
+    <div *ngFor="let prop of objectProps">
+      <strong>{{prop.label}}</strong>
+      <pre>{{prop| json}}</pre>
+    </div>
+  </div>
+</div>

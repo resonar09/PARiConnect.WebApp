@@ -1,0 +1,24 @@
+
+ul.list-group{
+    border: 0px solid #e9ecef;
+}
+ul.list-group.list-group-item{
+    border: 0px solid #e9ecef;
+}
+ul.list-group.list-group-striped li:nth-of-type(odd){
+    background: #fafafa;
+}
+
+ul.list-group.list-group-hover li:hover{
+    background: #e9ecef; 
+}
+
+li {
+    border: 0px;
+    border-bottom: 1px solid #e9ecef; 
+}
+
+
+.bottom-border{
+    border-bottom: 1px solid #e9ecef; 
+}

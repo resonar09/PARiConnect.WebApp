@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg fixed-top navbar-color ">
+    <a class="navbar-brand" href="/">
+        <img alt="PAR" class="d-xs-none d-sm-none d-md-none d-lg-none d-xl-block" [src]="picLogoUrl" />
+        <img alt="PAR" class="d-none d-xs-block d-sm-block d-md-block d-lg-block d-xl-none"  [src]="parLogoUrl" />
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <!--<span class="navbar-toggler-icon">test</span>-->
+        <span class="dark-blue-text"><i class="fa fa-bars fa-1x"></i></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active pl-2 pr-2">
+                <a class="nav-link" routerLink = "/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item px-2">
+                <a class="nav-link" routerLink = "/assess">Assess</a>
+            </li>
+            <li class="nav-item px-2">
+                <a class="nav-link" routerLink = "/clients">Clients</a>
+            </li>
+            <li class="nav-item px-2">
+                <a class="nav-link" routerLink = "/clients">Reports</a>
+            </li>
+            <li class="nav-item px-2">
+                <a class="nav-link" routerLink = "/clients">Purchase</a>
+            </li>
+            <li class="nav-item px-2"> 
+                <a class="nav-link" href="/Home/Contact">Account Management</a>
+            </li>
+        </ul>
+<!--         <form class="form-inline my-2 my-lg-0 hidden-xl-down">
+            <input id="nav-search" class="form-control mr-sm-2 hidden-xl-down" type="search"  placeholder="Search assessments and clients" aria-label="Search">
+        </form> -->
+        <div *ngIf="auth.isAuthenticated" class="dropdown">
+            <button class="btn dropdown-toggle btn-link nav-account-link" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span>{{transformName(auth.fullname)}}</span>
+            </button>
+            <i class="fa fa-user-circle fa-2x align-middle"></i>
+            <div id="nav-dropdown-menu" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Account Settings</a>
+                <a class="dropdown-item" href="#">Help Center</a>
+                <a class="dropdown-item" href="#">Give us Feedback</a>
+                <a class="dropdown-item" (click)="auth.logout()">Log Out</a>
+            </div>
+        </div>
+        <a *ngIf="!auth.isAuthenticated" class="nav-link" routerLink = "/login">Login</a>
+    </div>
+</nav>

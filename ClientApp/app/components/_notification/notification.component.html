@@ -1,0 +1,43 @@
+<!-- <div *ngFor="let alert of alerts">
+    <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
+  </div> -->
+<div *ngFor="let alert of alerts" class="alert alert-success alert-dismissable">
+    <div class="d-flex">
+        <div>
+            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+        </div>
+        <div class="mx-2">
+            {{alert.message}}
+        </div>
+        <div class="ml-auto alert-link">
+            <a href="#">
+                <small>View Inventory</small>
+            </a>
+        </div>
+        <div class="ml-auto">
+            <a class="close" (click)="removeAlert(alert)">&times;</a>
+        </div>
+
+    </div>
+</div>
+{{alerts | json}}
+<!--   <div *ngFor="let alert of alerts" class="{{ cssClass(alert) }} alert-dismissable">
+    {{alert.msg}}
+    <a class="close" (click)="removeAlert(alert)">&times;</a>
+  </div> 
+
+<alert type="danger" dismissible="true" >
+    <div class="d-flex notification">
+        <div>
+            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+        </div>
+        <div>
+            <small class="ml-2 font-weight-normal">Inventory Uses are low!</small>
+        </div>
+        <div class="ml-auto mr-4">
+            <a href="#" class="alert-link">
+                <small class="text-muted ">View</small>
+            </a>
+        </div>
+    </div>
+</alert>-->
