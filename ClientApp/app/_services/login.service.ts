@@ -15,7 +15,10 @@ export class LoginService {
     this.auth.login(form).subscribe(
       data => {
         //notificationSrv.addNotifications('Logged in!');
-        this.alertService.success("Logged in", 0);
+          this.alertService.success("Logged in", 5000, false);
+          this.alertService.error("Your inventory is low on credits", 0, true);
+          this.alertService.warn("You have undistributed uses.", 0, true);
+          
         console.log("logged in!");
       },
       error => {

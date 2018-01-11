@@ -9,7 +9,8 @@ export class NotificationService {
       message:
         "Your inventory is low!",
         timeout: 10000,
-        timeCreated: 0
+          timeCreated: 0,
+        sticky: false
     }
   ];
   constructor() {}
@@ -21,9 +22,11 @@ export class NotificationService {
   addNotification(message:string){
       this.alerts.push({
         type: 2,
-        message: message
-        ,timeout: 20000,
-        timeCreated: 0
+        message: message,
+        timeout: 20000,
+          timeCreated: 0,
+          sticky:false
+
       });
       //console.log(this.alerts);
   }

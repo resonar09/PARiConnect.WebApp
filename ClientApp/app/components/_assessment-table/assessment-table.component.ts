@@ -44,7 +44,7 @@ export class AssessmentTableComponent implements OnInit {
   }
   getAssessmentReview(clientAssessment:any){
     console.log(clientAssessment);
-    this.alertService.info("you chose:" + clientAssessment.assessment, 5000);
+    this.alertService.info(clientAssessment.assessment, 5000, false);
   }
 
   sort(property: string) {

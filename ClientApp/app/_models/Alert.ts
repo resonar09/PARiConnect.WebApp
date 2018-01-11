@@ -3,6 +3,7 @@ export class Alert {
     message: string;
     timeout: number;
     timeCreated: number;
+    sticky: boolean;
 
 
 }

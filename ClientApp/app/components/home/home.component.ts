@@ -16,6 +16,6 @@ export class HomeComponent {
 
   addNewClient() {
     //this.notificationService.addNotification("Added New Client");
-    this.alertService.success("New Client Added", 5000);
+    this.alertService.success("New Client Added", 5000, false);
   }
 }
